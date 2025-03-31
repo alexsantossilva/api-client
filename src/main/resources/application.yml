@@ -1,3 +1,6 @@
+server:
+    port: 8080
+
 spring:
     application:
         name: client
@@ -7,6 +10,11 @@ springdoc:
         url: /openapi.yaml
     api-docs:
         enabled: true
+
+external:
+    api:
+        url: http://localhost:8081
+        uri: /cartoes
 
   # RABBITMQ
 rabbitmq:

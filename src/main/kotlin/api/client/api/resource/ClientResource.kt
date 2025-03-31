@@ -6,6 +6,7 @@ import api.client.api.service.impl.ClientServiceImpl
 import api.client.domain.entity.ClienteData
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/cartoes")
@@ -16,5 +17,10 @@ class ClientResource(private val service: ClientServiceImpl) {
         val retrieveClienteDataParams = ClienteMapper.toDomain(clienteRequest)
         val clienteData = service.processClient(retrieveClienteDataParams)
         return ResponseEntity.ok(clienteData)
+    }
+
+    @GetMapping("/{id}")
+    fun proxyRequest(@PathVariable id: String): Mono<ResponseEntity<String>> {
+        return service.getCardsOffers(id)
     }
 }
